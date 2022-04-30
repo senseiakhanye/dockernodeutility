@@ -1,0 +1,20 @@
+# DockerNodeUtility
+
+This is a utility docker container for all the node projects.
+
+The container utility purpose is to initialise new npm projects without having to install npm in the system. You should only have to run the DockerNodeUtility only on initializing the project, thereafter you can run simple commands to run the docker container.
+
+## Initialization of the npm package
+
+You will only have to run this only once. Just run the docker instructions below
+
+1. `docker-compose run --rm npm init`
+
+## Install modules
+
+1. `docker-compose run --rm npm install <module>`
+
+## After installation
+
+1. Keep the bind mounts
+2. Add `CMD` to convert the installation into a normal docker container.
