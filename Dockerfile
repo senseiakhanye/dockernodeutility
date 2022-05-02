@@ -5,3 +5,5 @@ USER node
 WORKDIR /app
 
 ENTRYPOINT [ "npm" ]
+
+CMD ["start"]
