@@ -18,3 +18,23 @@ You will only have to run this only once. Just run the docker instructions below
 
 1. Keep the bind mounts
 2. Add `CMD` to convert the installation into a normal docker container.
+
+## Setting permissions
+
+Docker defaults to root for creating volumes, the best way to tensure that volumes get created with the right user, the following lines are added on the compose file
+
+> `user: "1000:1000"`
+
+To get the correct User ID and group ID, type the following on the terminal.
+
+`id` this will create an output as follows
+
+```
+uid={...}(xxx) gid={...}(xxx) ...
+```
+
+Take note of the uid and gid, then edit the compose.yaml file with the uid and gid, example `user: "uid:gid"`
+
+### Still getting a problem with permissions
+
+Not neat solution, run `chown 1000:1000 path/to/volume` to set permissions.

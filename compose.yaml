@@ -1,7 +1,25 @@
 services:
+  mongodb:
+    image: 'mongo'
+    volumes:
+      - data:/data/db
+    # environment:
+      # MONGO_INITDB_ROOT_USERNAME: khanye (unsecure if you sending via git)
+      # Going for environment files, this is much safer
+    env_file:
+      - ./env/mongo.env
   npm:
+    user: 1000:1000
     build: ./
     stdin_open: true
     tty: true
     volumes:
       - ./:/app
+    ports:
+      - '4500:4500'
+    env_file:
+      - ./env/backend.env
+    depends_on:
+      - mongodb
+volumes:
+  data:
