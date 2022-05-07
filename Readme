@@ -41,4 +41,10 @@ Not neat solution, run `chown 1000:1000 path/to/volume` to set permissions.
 
 ## Connecting to mongodb
 
-For mongodb connection url, instead of using `localhost`, the correct name is now the name of the image, for the mondb image, this will be `mongodb`
+For mongodb connection url, instead of using `localhost`, the correct name is now the name of the image, 
+for the mondb image, this will be `mongodb`
+
+## Starting error (network)
+
+Cannot start service: network not found
+https://stackoverflow.com/questions/53347289/docker-error-cannot-start-service-network-7808732465bd529e6f20e4071115218b

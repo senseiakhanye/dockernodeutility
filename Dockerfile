@@ -6,4 +6,4 @@ WORKDIR /app
 
 ENTRYPOINT [ "npm" ]
 
-CMD ["start"]
+CMD ["run", "dev"]

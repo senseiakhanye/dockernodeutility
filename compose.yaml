@@ -8,6 +8,8 @@ services:
       # Going for environment files, this is much safer
     env_file:
       - ./env/mongo.env
+    networks:
+      - backend
   npm:
     user: 1000:1000
     build: ./
@@ -16,10 +18,15 @@ services:
     volumes:
       - ./:/app
     ports:
-      - '4500:4500'
+      - "${PORT}:${PORT}"
     env_file:
       - ./env/backend.env
+    # This seems to be causing error when starting the npm container.
     depends_on:
       - mongodb
+    networks:
+      - backend
 volumes:
   data:
+networks:
+  backend: {}

@@ -1,0 +1,1 @@
+docker-compose --env-file ./env/.env.test run --rm npm test

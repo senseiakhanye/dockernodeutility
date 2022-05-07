@@ -2,6 +2,12 @@ const express = require('express');
 const Tester = require('../models/tester');
 const routers = express.Router();
 
+routers.get('/passtest', async(req, res) => {
+    res.status(200).send({
+        "ok": "ok"
+    });
+})
+
 routers.get('/test', async (req, res) => {
     try {
         const allList = await Tester.find({});
