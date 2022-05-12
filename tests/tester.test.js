@@ -1,16 +1,18 @@
 const request = require('supertest');
-const Tester = require('../src/models/tester');
+const Tester = require('../src/controllers/tester');
 const app = require('../src/app');
 const { setupDatabase, testOne } = require('./fixtures/db');
+const MongoClient = require('../src/db/mongoclient');
 
 beforeEach(setupDatabase);
 
 test("Should save one test", async() => {
+    const client = await MongoClient.getClient();
     const response = await request(app)
                             .post('/test')
                             .send({ name: testOne.name })
                             .expect(200);
-    const testResponse = await Tester.findById(response.body._id);
+    const testResponse = await Tester.findById(client, response.body._id);
     expect(testResponse._id).not.toBeNull();
     expect(testResponse.name).toEqual(testOne.name);
 });

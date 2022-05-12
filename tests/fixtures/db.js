@@ -1,15 +1,17 @@
-const mongoose = require('mongoose');
-const Tester = require('../../src/models/tester');
+const mongoClient = require('../../src/db/mongoclient');
+const Tester = require('../../src/controllers/tester');
+const { ObjectId } = require('mongodb');
 
-const testOneId = new mongoose.Types.ObjectId;
+const testOneId = ObjectId.generate()
 const testOne = {
     _id: testOneId,
     name: 'One'
 }
 
 const setupDatabase = async () => {
-    await Tester.deleteMany();
-    await new Tester(testOne).save();
+    let client = await mongoClient.getClient();
+    await Tester.deleteMany(client);
+    await Tester.save(client, testOne);
 }
 
 module.exports = {
